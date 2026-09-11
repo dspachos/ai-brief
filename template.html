@@ -30,7 +30,7 @@
     };
   </script>
   <style>
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 106.25%; }
     ::selection { background: #1B365D; color: #f5f4ed; }
   </style>
 </head>
@@ -46,10 +46,10 @@
   <main class="max-w-2xl mx-auto px-6">
 
     <header class="pt-12 pb-8 border-b border-hair">
-      <p class="font-mono text-[11px] tracking-[0.25em] text-muted uppercase">{{DATE_LONG}}</p>
+      <p class="font-mono text-xs tracking-[0.25em] text-muted uppercase">{{DATE_LONG}}</p>
       <h1 class="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight text-ink leading-tight">{{POST_TITLE}}</h1>
       <p class="mt-4 text-lg text-body leading-relaxed">{{LEAD_PARAGRAPH}}</p>
-      <nav class="mt-6 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[11px] uppercase tracking-[0.15em]">
+      <nav class="mt-6 flex flex-wrap gap-x-5 gap-y-1 font-mono text-xs uppercase tracking-[0.15em]">
         <span class="text-muted">In this briefing —</span>
         <a href="#top-stories" class="text-brand hover:underline underline-offset-4">Top stories</a>
         <a href="#tools-releases" class="text-brand hover:underline underline-offset-4">Tools &amp; releases</a>
@@ -61,24 +61,24 @@
 
     <!-- Repeat per section, numbering 01–05 in order. ids must match the nav above. -->
     <section id="top-stories" class="pt-10">
-      <h2 class="font-mono text-[11px] font-bold tracking-[0.25em] text-brand uppercase border-b border-hair pb-2">{{SECTION_TITLE}}</h2>
+      <h2 class="font-mono text-xs font-bold tracking-[0.25em] text-brand uppercase border-b border-hair pb-2">{{SECTION_TITLE}}</h2>
 
       <!-- Repeat per story: -->
       <article class="mt-7">
         <h3 class="text-lg font-semibold text-ink">{{STORY_TITLE}}</h3>
-        <p class="mt-1.5 text-[15px] text-body leading-7">{{STORY_SUMMARY_1_3_SENTENCES}}</p>
+        <p class="mt-1.5 text-base text-body leading-7">{{STORY_SUMMARY_1_3_SENTENCES}}</p>
         <p class="mt-2 font-mono text-xs"><a href="{{SOURCE_URL}}" class="text-brand hover:underline underline-offset-2">Source Name ↗</a></p>
       </article>
     </section>
 
     <section id="markets" class="pt-12">
-      <h2 class="font-mono text-[11px] font-bold tracking-[0.25em] text-brand uppercase border-b border-hair pb-2">Markets</h2>
+      <h2 class="font-mono text-xs font-bold tracking-[0.25em] text-brand uppercase border-b border-hair pb-2">Markets</h2>
 
       <!-- Wrap the table exactly like this so it scrolls on narrow screens. -->
       <div class="overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0 mt-5">
         <table class="w-full text-sm min-w-[24rem]">
           <thead>
-            <tr class="text-left text-[11px] uppercase tracking-[0.15em] text-muted">
+            <tr class="text-left text-xs uppercase tracking-[0.15em] text-muted">
               <th class="py-2 font-medium">Ticker</th>
               <th class="py-2 font-medium text-right">Price</th>
               <th class="py-2 font-medium text-right">Change</th>
@@ -95,12 +95,12 @@
         </table>
       </div>
 
-      <p class="mt-5 text-[15px] text-body leading-7">{{MARKET_COMMENTARY_WITH_SOURCES}}</p>
+      <p class="mt-5 text-base text-body leading-7">{{MARKET_COMMENTARY_WITH_SOURCES}}</p>
     </section>
 
     <section id="quick-hits" class="pt-12">
-      <h2 class="font-mono text-[11px] font-bold tracking-[0.25em] text-brand uppercase border-b border-hair pb-2">Quick hits</h2>
-      <ul class="mt-5 space-y-3 text-[15px] text-body leading-7 list-disc list-outside pl-5 marker:text-muted">
+      <h2 class="font-mono text-xs font-bold tracking-[0.25em] text-brand uppercase border-b border-hair pb-2">Quick hits</h2>
+      <ul class="mt-5 space-y-3 text-base text-body leading-7 list-disc list-outside pl-5 marker:text-muted">
         <li>{{ONE_LINER}} <a href="{{SOURCE_URL}}" class="text-brand hover:underline underline-offset-2">↗</a></li>
       </ul>
     </section>
