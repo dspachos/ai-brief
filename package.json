@@ -1,0 +1,16 @@
+{
+  "name": "ai-brief-mcp",
+  "version": "1.0.0",
+  "description": "MCP server exposing The AI Brief (https://dspachos.github.io/ai-brief/) daily AI briefing as tools",
+  "type": "module",
+  "bin": {
+    "ai-brief-mcp": "scripts/mcp-server/server.mjs"
+  },
+  "files": [
+    "scripts/mcp-server/"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.6.2"
+  }
+}

@@ -45,6 +45,20 @@ open http://localhost:8080
 
 Headless variant: `pi -p @.pi/prompts/briefing.md`
 
+## Use it as an MCP server
+
+Any MCP client (Claude Desktop/Code, Cursor, pi) can read the latest briefing as tools:
+
+```bash
+# one-time, for anyone with Node — runs straight from the repo, always current:
+claude mcp add ai-brief -- npx -y github:dspachos/ai-brief
+
+# or from a local checkout:
+claude mcp add ai-brief -- node scripts/mcp-server/server.mjs
+```
+
+Tools: `get-latest-briefing` (full sections & items), `get-briefing-by-date`, `search-briefing-items`. Stateless — it fetches the live `posts.json`/`search.json`, so no keys, no database. Point it elsewhere with `AI_BRIEF_URL`. Then just ask: *"give me my daily AI briefing"* or *"what's new with nvda?"*
+
 ## Tech
 
 - **Static HTML** — Tailwind CSS (CDN) + Alpine.js, zero build step
