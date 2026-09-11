@@ -21,11 +21,11 @@ async function briefing(date) {
     if (!s) sections.push(s = { section: it.section, items: [] });
     s.items.push({ title: it.title, text: it.text, url: new URL(it.url, BASE).href });
   }
-  const links = [];
+  const seen = [];
   const ref = url => {
-    let i = links.indexOf(url);
-    if (i === -1) { links.push(url); i = links.length - 1; }
-    return `[${i + 1}]`;
+    let i = seen.indexOf(url);
+    if (i === -1) { seen.push(url); i = seen.length - 1; }
+    return `[[${i + 1}]](${url})`;
   };
   let md = `# ${meta.title}\n\n*${meta.date}*\n\n${meta.summary}\n`;
   for (const s of sections) {
@@ -34,8 +34,6 @@ async function briefing(date) {
       md += `\n### ${it.title}\n\n${it.text} ${ref(it.url)}\n`;
     }
   }
-  md += `\n## Links\n`;
-  links.forEach((u, i) => { md += `\n[${i + 1}]: ${u}\n`; });
   return md;
 }
 
@@ -51,18 +49,16 @@ async function search(query, limit = 10) {
       url: new URL(url, BASE).href
     }));
   if (!hits.length) return `No matches for “${query}” in the last 30 days of briefings.`;
-  const links = [];
+  const seen = [];
   const ref = url => {
-    let i = links.indexOf(url);
-    if (i === -1) { links.push(url); i = links.length - 1; }
-    return `[${i + 1}]`;
+    let i = seen.indexOf(url);
+    if (i === -1) { seen.push(url); i = seen.length - 1; }
+    return `[[${i + 1}]](${url})`;
   };
   let md = `**${hits.length} match${hits.length === 1 ? '' : 'es'} for “${query}” — last 30 days**`;
   for (const h of hits) {
     md += `\n\n### ${h.title}\n${h.date} · ${h.section}\n\n${h.text} ${ref(h.url)}`;
   }
-  md += `\n\n**Links**\n`;
-  links.forEach((u, i) => { md += `\n[${i + 1}]: ${u}`; });
   return md;
 }
 
