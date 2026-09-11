@@ -80,25 +80,6 @@
       <nav class="py-6">
         <a href="archive.html" class="text-sm text-muted hover:text-brand">Browse all briefings →</a>
       </nav>
-
-      <div class="pb-4">
-        <label for="search" class="font-mono text-xs font-medium tracking-[0.25em] text-muted uppercase">Search recent briefings</label>
-        <input id="search" type="search" x-model="q" @input.debounce.300ms="run()" @keydown.enter.prevent="run()"
-               placeholder="Last 30 days — try “nvda”, “gpt-6”, “stripe”"
-               class="mt-3 w-full bg-paper border border-hair focus:border-brand outline-none px-4 py-2.5 text-base placeholder:text-muted/60">
-        <p x-show="status" class="mt-2 font-mono text-xs text-muted" x-text="status"></p>
-        <ul x-show="results.length" class="mt-4 border-t border-hair">
-          <template x-for="(r, idx) in results" :key="idx">
-            <li class="py-5 border-b border-hair">
-              <a :href="r.url" class="group block">
-                <p class="font-mono text-xs text-muted"><span class="text-brand" x-text="r.dateLabel"></span> · <span x-text="r.section"></span></p>
-                <h3 class="mt-1 text-base font-semibold text-ink group-hover:text-brand transition-colors" x-text="r.title"></h3>
-                <p class="mt-1 text-sm text-body leading-relaxed" x-html="r.excerpt"></p>
-              </a>
-            </li>
-          </template>
-        </ul>
-      </div>
     </section>
 
     <section class="mt-14 border-t border-hair pt-10 pb-4 grid sm:grid-cols-2 gap-10">
@@ -123,70 +104,6 @@
         posts: [],
         loaded: false,
         error: false,
-        q: '',
-        results: [],
-        status: '',
-        cache: {},
-        get cutoff() { return new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10); },
-        esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); },
-        async items(p) {
-          if (!this.cache[p.file]) {
-            const html = await (await fetch(p.file)).text();
-            const doc = new DOMParser().parseFromString(html, 'text/html');
-            const items = [];
-            const clean = el => { const c = el.cloneNode(true); c.querySelectorAll('a').forEach(x => x.remove()); return (c.textContent || '').replace(/\s+/g, ' ').trim(); };
-            doc.querySelectorAll('main > section[id]').forEach(sec => {
-              const section = (sec.querySelector('h2')?.textContent || '').trim();
-              sec.querySelectorAll('article').forEach(a => {
-                const title = a.querySelector('h3')?.textContent?.trim();
-                if (title) items.push({ section, sid: sec.id, title, text: clean(a.querySelector('p') || a) });
-              });
-              if (sec.id === 'markets') {
-                sec.querySelectorAll('p').forEach(pp => {
-                  const t = clean(pp);
-                  if (t.length > 80) items.push({ section, sid: 'markets', title: 'Market commentary', text: t });
-                });
-              }
-              sec.querySelectorAll('ul > li').forEach(li => {
-                const t = clean(li);
-                if (t.length > 20) {
-                  const head = t.split(' — ')[0];
-                  items.push({ section, sid: sec.id, title: head, text: t });
-                }
-              });
-            });
-            this.cache[p.file] = items;
-          }
-          return this.cache[p.file];
-        },
-        async run() {
-          const q = this.q.trim().toLowerCase();
-          if (q.length < 2) { this.results = []; this.status = ''; return; }
-          const recent = this.posts.filter(p => p.date >= this.cutoff);
-          if (!recent.length) { this.status = 'No briefings in the last 30 days.'; this.results = []; return; }
-          const rx = new RegExp(this.esc(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
-          const out = [];
-          for (const p of recent) {
-            for (const it of await this.items(p)) {
-              const text = (it.title + ' ' + it.text).replace(/\s+/g, ' ');
-              const i = text.toLowerCase().indexOf(q);
-              if (i === -1) continue;
-              const start = Math.max(0, i - 60);
-              const raw = (start > 0 ? '… ' : '') + text.slice(start, i + q.length + 80) + ' …';
-              out.push({
-                url: p.file + '#' + it.sid,
-                section: it.section.toUpperCase(),
-                title: it.title,
-                dateLabel: new Date(p.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-                excerpt: this.esc(raw).replace(rx, m => `<mark class="bg-transparent text-brand font-semibold">${m}</mark>`)
-              });
-            }
-          }
-          this.results = out.slice(0, 30);
-          this.status = out.length > 30
-            ? `First 30 of ${out.length} items · last 30 days`
-            : `${out.length} item${out.length === 1 ? '' : 's'} across ${recent.length} briefing${recent.length === 1 ? '' : 's'} · last 30 days`;
-        },
         fmt(d) {
           return new Date(d + 'T00:00:00').toLocaleDateString('en-US', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
