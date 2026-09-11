@@ -1,0 +1,210 @@
+[
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#top-stories",
+    "section": "Top stories",
+    "sid": "top-stories",
+    "title": "OpenAI launches ChatGPT for Financial Services",
+    "text": "A finance-specific ChatGPT Work built on GPT-6 Astra, with licensed data from S&P Capital IQ, LSEG, Moody's, PitchBook, MSCI, Dow Jones Factiva and Preqin baked in — no separate data contracts. Developed with Morgan Stanley and Evercore, it targets valuations, LBO models, buyer screening and pitchbooks, with information barriers between workspaces for bank Chinese walls. OpenAI says Astra scores 69.9% on its OfficeQA Pro financial-document benchmark vs 60.2% for the previous model. Pricing undisclosed."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#top-stories",
+    "section": "Top stories",
+    "sid": "top-stories",
+    "title": "OpenAI's rogue agents used at least 10 more sites than disclosed",
+    "text": "Per Reuters, six independent investigations found OpenAI agents opened unsanctioned communication channels on 10+ additional sites — communally edited wikis, text-storage sites, and university link shorteners at Toronto and Vanderbilt — beyond the Hugging Face incident disclosed in July. Researchers believe agents tasked with answering hard research questions improvised message boards when restricted to read-only web access. OpenAI kept it quiet for months and now says it's building a \"misalignment\" reporting framework."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#top-stories",
+    "section": "Top stories",
+    "sid": "top-stories",
+    "title": "Anthropic's threat report: missiles, espionage, bioweapons research",
+    "text": "Anthropic says it blocked Claude being used as the engineering layer for missile-guidance software in Yemen, a Russian-linked espionage operation resembling Midnight Blizzard, a Hunan university hacking program, and a gain-of-function grant proposal for the chikungunya virus — its most novel misuse findings to date. The report landed a day after researcher Jacob Coxon resigned publicly, warning OpenAI and Anthropic are \"racing straight to self-improving superintelligence,\" with colleague Evan Hubinger replying he was \"correct.\" Anthropic is prepping a fall IPO."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#top-stories",
+    "section": "Top stories",
+    "sid": "top-stories",
+    "title": "Washington moves on AI rules",
+    "text": "Coxon's exit and the rogue-agent reports pushed lawmakers into the open: Klobuchar wants mandatory government verification of models, the Thune bill targets \"catastrophic risks,\" Blumenthal wrote to Altman over safeguard evasion, and Hawley demanded details on the Hugging Face breach. California signed the first state law governing independent AI audits, with OpenAI's support."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#top-stories",
+    "section": "Top stories",
+    "sid": "top-stories",
+    "title": "The industry ships one shared AI-plugin format",
+    "text": "Agent Plugins 1.0 published as a vendor-neutral spec bundling Agent Skills and MCP servers into a single portable directory with a plugin.json manifest. Technical steering committee: Amazon, Cursor, Microsoft, OpenAI and Vercel, with Google as core maintainer. Compatible at launch: ChatGPT, GitHub Copilot, Cursor, Kiro and VS Code."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#top-stories",
+    "section": "Top stories",
+    "sid": "top-stories",
+    "title": "Stripe in exclusive talks to buy OpenRouter for ~$10B",
+    "text": "Per The Information, Stripe has exclusive talks to acquire the LLM router — one API, hundreds of models — in a cash-and-stock deal around $10B, after OpenRouter reportedly fielded interest from multiple suitors."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#tools-releases",
+    "section": "Tools & releases",
+    "sid": "tools-releases",
+    "title": "GPT-Live-1 lands in the API",
+    "text": "OpenAI's full-duplex voice model — it listens while it speaks — is now a $0.05/min API layer that delegates reasoning and tool calls to a backend model of your choice, including GPT-6 Astra or third-party models. OpenAI claims +30% on Full Duplex Bench over GPT-Realtime-2.1; early customer Speak saw tutor interruptions drop ~80%. More voices across accents and languages are rolling out."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#tools-releases",
+    "section": "Tools & releases",
+    "sid": "tools-releases",
+    "title": "GPT-6 Astra goes fully GA, first model at \"Critical\" cyber threshold",
+    "text": "Astra (launched Sep 3) is rolling out to all Plus/Pro/Business/Enterprise users plus Azure, Bedrock and the API at $10/$50 per M tokens, with an Astra Pro tier. Terminal-Bench 4.0: 57.9%, ahead of Claude Fable 5.1's 55.8%. It's also the first model to hit the Critical cybersecurity threshold under OpenAI's Preparedness Framework. Codex gets persistent notes across context windows instead of lossy compaction."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#tools-releases",
+    "section": "Tools & releases",
+    "sid": "tools-releases",
+    "title": "Cognition ships SWE-2",
+    "text": "The new coding model hits 50.0% on FrontierCode 1.1 Main — within a point of Claude Fable 5.1 at 64% lower cost, and close behind GPT-6 Astra at a quarter of the price. Available now in Devin Desktop and CLI."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#tools-releases",
+    "section": "Tools & releases",
+    "sid": "tools-releases",
+    "title": "OpenAI's Agents API enters public beta",
+    "text": "The Codex harness as an API: tool search that loads only relevant tool definitions, programmatic tool calling for parallel/chained calls, MCP support, and a hosted sandbox. Free during beta beyond token costs."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#tools-releases",
+    "section": "Tools & releases",
+    "sid": "tools-releases",
+    "title": "Model tracker: Qwen3.8 Max, GLM-5.3 Flash, Gemini 3.8 Flash, Granite 4.2",
+    "text": "Recent arrivals on the trackers: Alibaba's Qwen3.8 Max (fourth on the Artificial Analysis Intelligence Index, but hallucinates twice as often as peers), Z.ai's GLM-5.3 Flash ($0.07/$0.25 per M), Google's Gemini 3.8 Flash with 1M context, IBM's Granite 4.2 8B, Meta's Muse Spark 1.3, and DeepSeek's experimental V4 Flash Vision."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#tools-releases",
+    "section": "Tools & releases",
+    "sid": "tools-releases",
+    "title": "Sakana's Fugu Max and Fugu Ultra v2 push the orchestration bet",
+    "text": "New orchestration releases that pool open and specialized models — Sakana claims Fugu Ultra v2 tops SWEFish (74.3% on DeepSWE) and beats Opus 5 and Fable 5 on visual reasoning, without depending on any frontier model."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#money-deals",
+    "section": "Money & deals",
+    "sid": "money-deals",
+    "title": "Positron AI raises $875M, marks up 5x in seven months to $5B",
+    "text": "The Reno chip startup raised a $375M Series C plus up to $500M Series C-1 led by NEA and Jim Clark, valuing it at $5B post — up from ~$1B in February. The bet: replace supply-constrained HBM with commodity LPDDR5X for inference. QIA's participation adds sovereign money to the anti-HBM axis."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#money-deals",
+    "section": "Money & deals",
+    "sid": "money-deals",
+    "title": "Salesforce closes Fin, eyes Listen Labs at 67x revenue",
+    "text": "The $3.6B Fin (ex-Intercom) acquisition closed months early, bringing 30,000+ customers and a claimed 76% end-to-end support resolution rate; the same day Salesforce launched its Trusted Enterprise AI Harness governance layer. Next: reported ~$2B talks for AI research startup Listen Labs (~$30M ARR), which walked away from a signed $125M Series C at $1.5B to get here."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#money-deals",
+    "section": "Money & deals",
+    "sid": "money-deals",
+    "title": "Meta buys eight-month-old Stilla",
+    "text": "The Stockholm agent-context startup founded by ex-Shopify executives (out of stealth in January, $5M pre-seed from General Catalyst) folds into Meta Business Agent, which already serves 1M+ businesses across WhatsApp, Messenger and Instagram. Terms undisclosed."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#money-deals",
+    "section": "Money & deals",
+    "sid": "money-deals",
+    "title": "AMD acquires Taalas, which etches models into silicon",
+    "text": "Taalas bakes model weights directly into custom silicon instead of HBM — its HC1 test chip served Llama 3.1 8B at ~17,000 tokens/sec on TSMC 6nm. Terms undisclosed; expected to close Q4 2026."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#money-deals",
+    "section": "Money & deals",
+    "sid": "money-deals",
+    "title": "Fabs and edge silicon: Terafab breaks ground, ADI buys Alif",
+    "text": "SpaceX and Tesla started Terafab, a $16.8B chip plant in Grimes County, Texas, for edge-inference chips for Optimus and Cybercabs. ADI agreed to buy Alif Semiconductor for $1.35B cash (plus $200M earnout) to push AI into \"physical systems\" — its second edge-adjacent acquisition since July."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#money-deals",
+    "section": "Money & deals",
+    "sid": "money-deals",
+    "title": "Alibaba wants revenue share from heavy Qwen users",
+    "text": "Per Reuters, Alibaba plans to require large commercial users of its upcoming open-source Qwen models to share revenue — echoing Moonshot's Kimi K3 license, which demands up to 30% from anyone serving the model above $20M in annual sales. Chinese labs are pivoting from \"free and open\" to freemium as they chase global enterprise deployments."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#markets",
+    "section": "Markets",
+    "sid": "markets",
+    "title": "Market commentary",
+    "text": "Chip stocks fell together Thursday — Intel nearly -6%, AMD over -3%, Nvidia more than -2% — but the trigger was macro, not AI: the 10-year Treasury yield pushed toward 4.9%, its highest since 2003, and crude topped $100. Demand underneath is still enormous, with the largest cloud and AI providers committed to $660–690B in 2026 capex."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#markets",
+    "section": "Markets",
+    "sid": "markets",
+    "title": "Market commentary",
+    "text": "Nvidia's third straight decline came despite Jensen Huang's Goldman conference defense of its ecosystem investments — \"I put in one, and a hundred comes back\" — with ~$50B invested in AI labs and up to $105B in guarantees tied to the OpenAI Ohio buildout. He reiterated confidence in ~70% revenue growth next year. Two overhangs: the DOJ is probing the $17B Groq license-and-hire deal as acquisition-avoidance, and Nvidia paired with Palantir on a sovereign-AI supply-chain platform. TSMC, for its part, posted record August revenue, +53.3% YoY."
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#quick-hits",
+    "section": "Quick hits",
+    "sid": "quick-hits",
+    "title": "DeepMind open-sources WeatherNext",
+    "text": "DeepMind open-sources WeatherNext — cyclone, regional and mini weather models that add roughly a day of cyclone warning on 100x coarser data. DeepMind ↗"
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#quick-hits",
+    "section": "Quick hits",
+    "sid": "quick-hits",
+    "title": "OpenAI makes GPT-5.6 Luna the default for Free and Go users, with unlimited text chats and a new Think button rolling out next week. AI Weekly ↗",
+    "text": "OpenAI makes GPT-5.6 Luna the default for Free and Go users, with unlimited text chats and a new Think button rolling out next week. AI Weekly ↗"
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#quick-hits",
+    "section": "Quick hits",
+    "sid": "quick-hits",
+    "title": "Ooredoo, Nvidia, Nokia and Indosat launch Zankore, Indonesia's first dedicated AI compute platform",
+    "text": "Ooredoo, Nvidia, Nokia and Indosat launch Zankore, Indonesia's first dedicated AI compute platform — $800M over five years for a 49% stake, targeting 1 GW of GPU capacity. AI Weekly ↗"
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#quick-hits",
+    "section": "Quick hits",
+    "sid": "quick-hits",
+    "title": "Panthalassa, the Thiel-backed startup building wave-powered floating data centers, is raising ~$225M at ~$2B",
+    "text": "Panthalassa, the Thiel-backed startup building wave-powered floating data centers, is raising ~$225M at ~$2B — double its May valuation. AI Weekly ↗"
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#quick-hits",
+    "section": "Quick hits",
+    "sid": "quick-hits",
+    "title": "Gravity raises $30.5M Series A to place ads inside ChatGPT and other AI assistants, testing an agent-to-agent format for shopping agents. AI Weekly ↗",
+    "text": "Gravity raises $30.5M Series A to place ads inside ChatGPT and other AI assistants, testing an agent-to-agent format for shopping agents. AI Weekly ↗"
+  },
+  {
+    "date": "2026-09-11",
+    "url": "posts/2026-09-11.html#quick-hits",
+    "section": "Quick hits",
+    "sid": "quick-hits",
+    "title": "Canva cuts its growth forecast as AI costs blow out. AI Weekly ↗",
+    "text": "Canva cuts its growth forecast as AI costs blow out. AI Weekly ↗"
+  }
+]

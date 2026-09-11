@@ -56,10 +56,16 @@ Prepend to `posts.json` (newest first, valid JSON):
 { "date": "YYYY-MM-DD", "title": "AI Briefing — <Month D, YYYY>", "summary": "<2-sentence summary of the day>", "file": "posts/YYYY-MM-DD.html" }
 ```
 
-## 6. Commit & publish
+## 6. Rebuild the search index
 
 ```bash
-git add posts/YYYY-MM-DD.html posts.json
+python3 scripts/build_search.py   # regenerates search.json (item-level, last 31 days)
+```
+
+## 7. Commit & publish
+
+```bash
+git add posts/YYYY-MM-DD.html posts.json search.json
 git commit -m "feat: briefing for YYYY-MM-DD"
 git push origin main
 ```
