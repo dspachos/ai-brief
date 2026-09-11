@@ -55,14 +55,14 @@ Any MCP client can read the briefing as tools. The server is stateless — it fe
 
 ### Remote — always latest, nothing to install (best for sharing)
 
-The same server is deployed as a Cloudflare Worker (free tier): **https://mcp.optiread.app/mcp**
+The same server is deployed as a Cloudflare Worker (free tier): **https://ai.optiread.app/mcp**
 
 ```bash
 # Claude Code / Desktop:
-claude mcp add --transport http ai-brief https://mcp.optiread.app/mcp
+claude mcp add --transport http ai-brief https://ai.optiread.app/mcp
 
 # or any agent via add-mcp:
-npx add-mcp https://mcp.optiread.app/mcp --agent claude-code
+npx add-mcp https://ai.optiread.app/mcp --agent claude-code
 ```
 
 No Node, no npx cache — server updates are instant for everyone. Deploy server-code changes with `cd worker && npm run deploy`.
