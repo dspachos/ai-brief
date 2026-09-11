@@ -91,6 +91,14 @@ claude mcp add ai-brief -- npx -y github:dspachos/ai-brief
 
 Requires Node 20+. Then just ask your agent: *"give me my daily AI briefing"* or *"what's new with nvda?"*
 
+### Updating
+
+The server is cached by npx. After a new version is released, refresh once and restart your agent:
+
+```bash
+npx clear-npx-cache
+```
+
 ## Tech
 
 - **Static HTML** — Tailwind CSS (CDN) + Alpine.js, zero build step
