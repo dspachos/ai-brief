@@ -28,6 +28,8 @@ class ItemParser(HTMLParser):
         self.art_title = ''
         self.art_body = ''
         self.art_has_body = False
+        self.row = None
+        self.row_cell = None
 
     def _txt(self):
         return ' '.join(''.join(self.buf).split())
@@ -49,6 +51,11 @@ class ItemParser(HTMLParser):
             self.art_title = ''
             self.art_body = ''
             self.art_has_body = False
+        elif self.sid is not None and tag == 'tr':
+            self.row = []
+        elif self.row is not None and tag == 'td':
+            self.row_cell = ''
+            self.buf = []
         elif self.sid is not None and tag in ('h2', 'h3', 'p', 'li'):
             self.capture = tag
             self.buf = []
@@ -60,6 +67,16 @@ class ItemParser(HTMLParser):
             self.div_depth -= 1
         elif tag == 'article':
             self.in_article = False
+        elif tag == 'td' and self.row_cell is not None:
+            self.row.append(' '.join(''.join(self.buf).split()))
+            self.row_cell = None
+        elif tag == 'tr' and self.row is not None:
+            cells, self.row = self.row, None
+            if (self.sid == 'markets' and len(cells) >= 3
+                    and cells[0].isalpha() and cells[0].isupper() and len(cells[0]) <= 5):
+                title = f"{cells[0]} — {cells[2]}"
+                text = f"{cells[0]} closed at {cells[1]} ({cells[2]}) in the last session."
+                self._push(title, text)
         elif tag == self.capture:
             text = self._txt()
             self.capture = None
@@ -83,7 +100,7 @@ class ItemParser(HTMLParser):
                 self.in_article = False
 
     def handle_data(self, d):
-        if self.capture:
+        if self.capture or self.row_cell is not None:
             self.buf.append(d)
 
 
