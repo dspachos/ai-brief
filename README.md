@@ -53,15 +53,25 @@ Any MCP client can read the briefing as tools. The server is stateless — it fe
 - `get-briefing-by-date` — any edition by `YYYY-MM-DD`
 - `search-briefing-items` — full-text item search over the last 30 days
 
-### Claude Code / Claude Desktop (CLI)
+### Install — one command (any agent)
+
+The simplest path is [add-mcp](https://github.com/neon-solutions/add-mcp), which writes the config for you across 20+ agents (Claude Code, Cursor, Codex, VS Code, OpenCode, Pi, Windsurf, and more):
+
+```bash
+npx add-mcp github:dspachos/ai-brief --name ai-brief --agent claude-code
+```
+
+Repeat `--agent <name>` for multiple clients, and run `npx add-mcp list-agents` to see all supported agents. Project-level by default; add `-g` for user-level.
+
+### Manual alternatives
+
+**Claude Code / Claude Desktop (CLI):**
 
 ```bash
 claude mcp add ai-brief -- npx -y github:dspachos/ai-brief
 ```
 
-### Any MCP client
-
-Most clients (Claude Desktop `claude_desktop_config.json`, Cursor `~/.cursor/mcp.json`, Windsurf, Cline, OpenCode) accept this standard block:
+**Any MCP client** — most clients (Claude Desktop `claude_desktop_config.json`, Cursor `~/.cursor/mcp.json`, Windsurf, Cline, OpenCode) accept this standard block:
 
 ```json
 {
