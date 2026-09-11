@@ -6,50 +6,72 @@
   <title>Archive — The AI Brief</title>
   <meta name="description" content="All daily AI briefings.">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#f5f4ed',
+            ink: '#33322c',
+            body: '#4a483f',
+            muted: '#756f60',
+            hair: '#ddd8c8',
+            brand: '#1B365D',
+            gain: '#4a7c59',
+            loss: '#a35252'
+          },
+          fontFamily: {
+            serif: ['Charter', 'Bitstream Charter', 'Georgia', 'Times New Roman', 'serif'],
+            mono: ['ui-monospace', 'SF Mono', 'Menlo', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-zinc-950 text-zinc-200 antialiased min-h-screen">
+<body class="bg-paper text-body font-serif antialiased min-h-screen">
   <main class="max-w-2xl mx-auto px-6">
 
-    <header class="pt-16 pb-10 border-b border-zinc-800/80">
-      <a href="index.html" class="text-sm text-cyan-400 hover:text-cyan-300">← Latest briefing</a>
-      <h1 class="mt-6 text-3xl font-semibold tracking-tight text-zinc-50">Archive</h1>
-      <p class="mt-2 text-zinc-400">Every daily briefing, newest first.</p>
+    <header class="pt-16 pb-10 border-b border-hair">
+      <a href="index.html" class="text-sm text-brand hover:underline underline-offset-4">← Latest briefing</a>
+      <h1 class="mt-6 text-3xl font-semibold tracking-tight text-ink">Archive</h1>
+      <p class="mt-2 text-muted">Every daily briefing, newest first.</p>
     </header>
 
     <section x-data="brief()">
       <div x-show="!loaded && !error" class="py-10 space-y-4">
-        <div class="h-4 w-24 bg-zinc-800 rounded animate-pulse"></div>
-        <div class="h-6 w-3/4 bg-zinc-800 rounded animate-pulse"></div>
-        <div class="h-3 w-full bg-zinc-800/60 rounded animate-pulse"></div>
+        <div class="h-4 w-24 bg-hair rounded animate-pulse"></div>
+        <div class="h-6 w-3/4 bg-hair rounded animate-pulse"></div>
+        <div class="h-3 w-full bg-hair/60 rounded animate-pulse"></div>
       </div>
 
-      <p x-show="error" class="py-10 text-zinc-500 text-sm">Couldn't load <code class="font-mono">posts.json</code>.</p>
+      <p x-show="error" class="py-10 text-muted text-sm">Couldn't load <code class="font-mono">posts.json</code>.</p>
 
       <template x-for="post in paged" :key="post.date">
-        <article class="py-8 border-b border-zinc-800/80">
+        <article class="py-8 border-b border-hair">
           <a :href="post.file" class="group block">
-            <time class="font-mono text-xs text-cyan-400/80" x-text="fmt(post.date)"></time>
-            <h2 class="mt-2 text-xl font-medium text-zinc-100 group-hover:text-white transition-colors" x-text="post.title"></h2>
-            <p class="mt-2 text-sm text-zinc-400 leading-relaxed" x-text="post.summary"></p>
-            <span class="mt-3 inline-block text-sm text-cyan-400 group-hover:text-cyan-300">Read briefing →</span>
+            <time class="font-mono text-xs text-brand" x-text="fmt(post.date)"></time>
+            <h2 class="mt-2 text-xl font-semibold text-ink group-hover:text-brand transition-colors" x-text="post.title"></h2>
+            <p class="mt-2 text-sm text-body leading-relaxed" x-text="post.summary"></p>
+            <span class="mt-3 inline-block text-sm text-brand underline underline-offset-4 decoration-hair group-hover:decoration-brand">Read briefing →</span>
           </a>
         </article>
       </template>
 
-      <p x-show="loaded && !error && posts.length === 0" class="py-10 text-zinc-500 text-sm">No briefings yet.</p>
+      <p x-show="loaded && !error && posts.length === 0" class="py-10 text-muted text-sm">No briefings yet.</p>
 
       <nav x-show="totalPages > 1" class="flex items-center justify-between py-6">
-        <button x-show="page > 1" @click="page--" class="text-sm text-cyan-400 hover:text-cyan-300">← Newer</button>
-        <span x-show="page === 1" class="text-sm text-zinc-600">← Newer</span>
-        <p class="font-mono text-xs text-zinc-500" x-text="`Page ${page} of ${totalPages}`"></p>
-        <button x-show="page < totalPages" @click="page++" class="text-sm text-cyan-400 hover:text-cyan-300">Older →</button>
-        <span x-show="page === totalPages" class="text-sm text-zinc-600">Older →</span>
+        <button x-show="page > 1" @click="page--" class="text-sm text-brand hover:underline underline-offset-4">← Newer</button>
+        <span x-show="page === 1" class="text-sm text-muted/50">← Newer</span>
+        <p class="font-mono text-xs text-muted" x-text="`Page ${page} of ${totalPages}`"></p>
+        <button x-show="page < totalPages" @click="page++" class="text-sm text-brand hover:underline underline-offset-4">Older →</button>
+        <span x-show="page === totalPages" class="text-sm text-muted/50">Older →</span>
       </nav>
     </section>
 
-    <footer class="py-10 text-xs text-zinc-500 leading-relaxed">
-      Assembled daily by a <a href="https://github.com/earendil-works/pi-coding-agent" class="text-zinc-400 hover:text-zinc-200 underline underline-offset-2">pi</a> agent from Exa search, RSS feeds, and market data. Every item links its source.
+    <footer class="py-10 text-xs text-muted leading-relaxed">
+      Assembled daily by a <a href="https://github.com/earendil-works/pi-coding-agent" class="text-brand hover:underline underline-offset-2">pi</a> agent from Exa search, RSS feeds, and market data. Every item links its source.
     </footer>
   </main>
 

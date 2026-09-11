@@ -6,65 +6,87 @@
   <title>{{POST_TITLE}} — The AI Brief</title>
   <meta name="description" content="{{SUMMARY}}">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#f5f4ed',
+            ink: '#33322c',
+            body: '#4a483f',
+            muted: '#756f60',
+            hair: '#ddd8c8',
+            brand: '#1B365D',
+            gain: '#4a7c59',
+            loss: '#a35252'
+          },
+          fontFamily: {
+            serif: ['Charter', 'Bitstream Charter', 'Georgia', 'Times New Roman', 'serif'],
+            mono: ['ui-monospace', 'SF Mono', 'Menlo', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
 </head>
-<body class="bg-zinc-950 text-zinc-200 antialiased min-h-screen">
+<body class="bg-paper text-body font-serif antialiased min-h-screen">
   <main class="max-w-2xl mx-auto px-6">
 
-    <header class="pt-12 pb-8 border-b border-zinc-800/80">
-      <a href="../index.html" class="text-sm text-cyan-400 hover:text-cyan-300">← All briefings</a>
-      <p class="mt-6 font-mono text-xs text-zinc-500">{{DATE_LONG}}</p>
-      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-zinc-50">{{POST_TITLE}}</h1>
-      <p class="mt-4 text-zinc-400 leading-relaxed">{{LEAD_PARAGRAPH}}</p>
+    <header class="pt-12 pb-8 border-b border-hair">
+      <a href="../index.html" class="text-sm text-brand hover:underline underline-offset-4">← All briefings</a>
+      <p class="mt-6 font-mono text-xs text-muted">{{DATE_LONG}}</p>
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-ink">{{POST_TITLE}}</h1>
+      <p class="mt-4 text-body leading-relaxed">{{LEAD_PARAGRAPH}}</p>
     </header>
 
     <!-- Repeat per section: -->
     <section class="pt-10">
-      <h2 class="text-lg font-semibold text-zinc-100 border-b border-zinc-800 pb-2">{{SECTION_TITLE}}</h2>
+      <h2 class="text-lg font-semibold text-ink border-b border-hair pb-2">{{SECTION_TITLE}}</h2>
 
       <!-- Repeat per story: -->
       <article class="mt-6">
-        <h3 class="text-base font-medium text-zinc-100">{{STORY_TITLE}}</h3>
-        <p class="mt-1.5 text-sm text-zinc-400 leading-relaxed">
+        <h3 class="text-base font-semibold text-ink">{{STORY_TITLE}}</h3>
+        <p class="mt-1.5 text-sm text-body leading-relaxed">
           {{STORY_SUMMARY_1_3_SENTENCES}}
-          <a href="{{SOURCE_URL}}" class="text-cyan-400 hover:text-cyan-300">Source Name ↗</a>
+          <a href="{{SOURCE_URL}}" class="text-brand hover:underline underline-offset-4">Source Name ↗</a>
         </p>
       </article>
     </section>
 
     <!-- Markets section: -->
     <section class="pt-10">
-      <h2 class="text-lg font-semibold text-zinc-100 border-b border-zinc-800 pb-2">Markets</h2>
+      <h2 class="text-lg font-semibold text-ink border-b border-hair pb-2">Markets</h2>
       <table class="mt-4 w-full text-sm">
         <thead>
-          <tr class="text-left text-xs uppercase tracking-wider text-zinc-500">
+          <tr class="text-left text-xs uppercase tracking-wider text-ink0">
             <th class="py-2 font-medium">Ticker</th>
             <th class="py-2 font-medium text-right">Price</th>
             <th class="py-2 font-medium text-right">Change</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="border-t border-zinc-800/70">
-            <td class="py-2 font-mono text-zinc-300">TICKER</td>
-            <td class="py-2 text-right text-zinc-300">000.00</td>
-            <td class="py-2 text-right font-mono text-red-400">-0.00%</td>
-            <!-- gains: class "text-green-400", losses: "text-red-400" -->
+          <tr class="border-t border-hair">
+            <td class="py-2 font-mono text-body">TICKER</td>
+            <td class="py-2 text-right text-body">000.00</td>
+            <td class="py-2 text-right font-mono text-loss">-0.00%</td>
+            <!-- gains: class "text-gain", losses: "text-loss" -->
           </tr>
         </tbody>
       </table>
-      <p class="mt-4 text-sm text-zinc-400 leading-relaxed">{{MARKET_COMMENTARY_WITH_SOURCES}}</p>
+      <p class="mt-4 text-sm text-body leading-relaxed">{{MARKET_COMMENTARY_WITH_SOURCES}}</p>
     </section>
 
     <!-- Quick hits: -->
     <section class="pt-10">
-      <h2 class="text-lg font-semibold text-zinc-100 border-b border-zinc-800 pb-2">Quick hits</h2>
-      <ul class="mt-4 space-y-2.5 text-sm text-zinc-400 leading-relaxed list-disc list-inside marker:text-zinc-600">
-        <li>{{ONE_LINER}} <a href="{{SOURCE_URL}}" class="text-cyan-400 hover:text-cyan-300">↗</a></li>
+      <h2 class="text-lg font-semibold text-ink border-b border-hair pb-2">Quick hits</h2>
+      <ul class="mt-4 space-y-2.5 text-sm text-body leading-relaxed list-disc list-inside marker:text-muted">
+        <li>{{ONE_LINER}} <a href="{{SOURCE_URL}}" class="text-brand hover:underline underline-offset-4">↗</a></li>
       </ul>
     </section>
 
-    <footer class="py-10 text-xs text-zinc-500 leading-relaxed border-t border-zinc-800/80 mt-10">
+    <footer class="py-10 text-xs text-ink0 leading-relaxed border-t border-hair mt-10">
       <p>Compiled by a pi agent from Exa search, RSS feeds, and Yahoo Finance quotes (last close). Every item links its source.</p>
-      <a href="../index.html" class="mt-2 inline-block text-cyan-400 hover:text-cyan-300">← All briefings</a>
+      <a href="../index.html" class="mt-2 inline-block text-brand hover:underline underline-offset-4">← All briefings</a>
     </footer>
   </main>
 </body>
