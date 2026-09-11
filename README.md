@@ -62,7 +62,7 @@ The same server is deployed as a Cloudflare Worker (free tier): **https://ai.opt
 claude mcp add --transport http ai-brief https://ai.optiread.app/mcp
 
 # or any agent via add-mcp:
-npx add-mcp https://ai.optiread.app/mcp --agent claude-code
+npx add-mcp https://ai.optiread.app/mcp --name ai-brief --agent claude-code
 ```
 
 No Node, no npx cache — server updates are instant for everyone. Deploy server-code changes with `cd worker && npm run deploy`.
