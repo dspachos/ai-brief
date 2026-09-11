@@ -56,11 +56,12 @@ Prepend to `posts.json` (newest first, valid JSON):
 { "date": "YYYY-MM-DD", "title": "AI Briefing — <Month D, YYYY>", "summary": "<2-sentence summary of the day>", "file": "posts/YYYY-MM-DD.html" }
 ```
 
-## 6. Commit
+## 6. Commit & publish
 
 ```bash
 git add posts/YYYY-MM-DD.html posts.json
 git commit -m "feat: briefing for YYYY-MM-DD"
+git push origin main
 ```
 
-Do not push. Report back: item count per section and a one-line recap of the day.
+If the push fails (no network, auth), say so and stop — do not retry more than once. Report back: item count per section and a one-line recap of the day.
