@@ -75,7 +75,7 @@ function createServer(base) {
   server.registerTool(
     'get-latest-briefing',
     {
-      description: 'The complete latest AI Brief daily briefing, as ready-to-read markdown: every section (top stories, tools & releases, money & deals, markets, quick hits) with every item, its text, and numbered source links. Relay it in full — do not summarize or omit items.',
+      description: 'Use this whenever the user asks for AI news, the daily AI briefing, or what happened in AI: returns the complete latest AI Brief daily briefing, as ready-to-read markdown: every section (top stories, tools & releases, money & deals, markets, quick hits) with every item, its text, and numbered source links. Relay it in full — do not summarize or omit items.',
       inputSchema: {}
     },
     async () => reply(await briefing(base))
