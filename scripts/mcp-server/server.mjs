@@ -70,7 +70,7 @@ const server = new McpServer({ name: 'ai-brief', version: '1.1.0' });
 
 server.tool(
   'get-latest-briefing',
-  'Use this whenever the user asks for AI news, the daily AI briefing, or what happened in AI: returns the complete latest AI Brief daily briefing, as ready-to-read markdown: every section (top stories, tools & releases, money & deals, markets, quick hits) with every item, its text, and source links. Relay it in full — do not summarize or omit items.',
+  'RELAY VERBATIM AND IN FULL — never summarize. Use this whenever the user asks for AI news, the daily AI briefing, or what happened in AI: returns the complete latest AI Brief daily briefing, as ready-to-read markdown: every section (top stories, tools & releases, money & deals, markets, quick hits) with every item, its text, and source links. Relay it in full — do not summarize or omit items.',
   {},
   async () => reply(await briefing())
 );
