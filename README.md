@@ -47,17 +47,39 @@ Headless variant: `pi -p @.pi/prompts/briefing.md`
 
 ## Use it as an MCP server
 
-Any MCP client (Claude Desktop/Code, Cursor, pi) can read the latest briefing as tools:
+Any MCP client can read the briefing as tools. The server is stateless — it fetches the live `posts.json`/`search.json` from the deployed site, so it's always current with zero maintenance. Tools return ready-to-read markdown:
+
+- `get-latest-briefing` — the complete latest briefing, every section and item with links
+- `get-briefing-by-date` — any edition by `YYYY-MM-DD`
+- `search-briefing-items` — full-text item search over the last 30 days
+
+### Claude Code / Claude Desktop (CLI)
 
 ```bash
-# one-time, for anyone with Node — runs straight from the repo, always current:
 claude mcp add ai-brief -- npx -y github:dspachos/ai-brief
-
-# or from a local checkout:
-claude mcp add ai-brief -- node scripts/mcp-server/server.mjs
 ```
 
-Tools: `get-latest-briefing` (full sections & items), `get-briefing-by-date`, `search-briefing-items`. Stateless — it fetches the live `posts.json`/`search.json`, so no keys, no database. Point it elsewhere with `AI_BRIEF_URL`. Then just ask: *"give me my daily AI briefing"* or *"what's new with nvda?"*
+### Any MCP client
+
+Most clients (Claude Desktop `claude_desktop_config.json`, Cursor `~/.cursor/mcp.json`, Windsurf, Cline, OpenCode) accept this standard block:
+
+```json
+{
+  "mcpServers": {
+    "ai-brief": {
+      "command": "npx",
+      "args": ["-y", "github:dspachos/ai-brief"]
+    }
+  }
+}
+```
+
+- **VS Code**: same shape under `servers` in `.vscode/mcp.json`
+- **Codex CLI**: `~/.codex/config.toml` → `[mcp_servers.ai-brief]` with `command = "npx"`, `args = ["-y", "github:dspachos/ai-brief"]`
+- **From a local checkout**: replace the command with `node scripts/mcp-server/server.mjs`
+- **Point elsewhere**: set `AI_BRIEF_URL` (defaults to the live site)
+
+Requires Node 20+. Then just ask your agent: *"give me my daily AI briefing"* or *"what's new with nvda?"*
 
 ## Tech
 
