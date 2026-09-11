@@ -26,7 +26,7 @@
 
       <p x-show="error" class="py-10 text-zinc-500 text-sm">Couldn't load <code class="font-mono">posts.json</code>.</p>
 
-      <template x-for="post in posts" :key="post.date">
+      <template x-for="post in paged" :key="post.date">
         <article class="py-8 border-b border-zinc-800/80">
           <a :href="post.file" class="group block">
             <time class="font-mono text-xs text-cyan-400/80" x-text="fmt(post.date)"></time>
@@ -38,6 +38,14 @@
       </template>
 
       <p x-show="loaded && !error && posts.length === 0" class="py-10 text-zinc-500 text-sm">No briefings yet.</p>
+
+      <nav x-show="totalPages > 1" class="flex items-center justify-between py-6">
+        <button x-show="page > 1" @click="page--" class="text-sm text-cyan-400 hover:text-cyan-300">← Newer</button>
+        <span x-show="page === 1" class="text-sm text-zinc-600">← Newer</span>
+        <p class="font-mono text-xs text-zinc-500" x-text="`Page ${page} of ${totalPages}`"></p>
+        <button x-show="page < totalPages" @click="page++" class="text-sm text-cyan-400 hover:text-cyan-300">Older →</button>
+        <span x-show="page === totalPages" class="text-sm text-zinc-600">Older →</span>
+      </nav>
     </section>
 
     <footer class="py-10 text-xs text-zinc-500 leading-relaxed">
@@ -51,6 +59,10 @@
         posts: [],
         loaded: false,
         error: false,
+        page: 1,
+        per: 12,
+        get totalPages() { return Math.ceil(this.posts.length / this.per); },
+        get paged() { return this.posts.slice((this.page - 1) * this.per, this.page * this.per); },
         fmt(d) {
           return new Date(d + 'T00:00:00').toLocaleDateString('en-US', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
