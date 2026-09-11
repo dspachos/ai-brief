@@ -53,7 +53,21 @@ Any MCP client can read the briefing as tools. The server is stateless — it fe
 - `get-briefing-by-date` — any edition by `YYYY-MM-DD`
 - `search-briefing-items` — full-text item search over the last 30 days
 
-### Install — one command (any agent)
+### Remote — always latest, nothing to install (best for sharing)
+
+The same server is deployed as a Cloudflare Worker (free tier): **https://ai-brief-mcp.dimitris-spachos.workers.dev/mcp**
+
+```bash
+# Claude Code / Desktop:
+claude mcp add --transport http ai-brief https://ai-brief-mcp.dimitris-spachos.workers.dev/mcp
+
+# or any agent via add-mcp:
+npx add-mcp https://ai-brief-mcp.dimitris-spachos.workers.dev/mcp --agent claude-code
+```
+
+No Node, no npx cache — server updates are instant for everyone. Deploy server-code changes with `cd worker && npm run deploy`.
+
+### Local stdio (runs from this repo)
 
 The simplest path is [add-mcp](https://github.com/neon-solutions/add-mcp), which writes the config for you across 20+ agents (Claude Code, Cursor, Codex, VS Code, OpenCode, Pi, Windsurf, and more):
 
