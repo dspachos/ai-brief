@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{POST_TITLE}} — The AI Brief</title>
   <meta name="description" content="{{SUMMARY}}">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231B365D'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='17' fill='%23f5f4ed' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -28,64 +29,89 @@
       }
     };
   </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    ::selection { background: #1B365D; color: #f5f4ed; }
+  </style>
 </head>
 <body class="bg-paper text-body font-serif antialiased min-h-screen">
+
+  <header class="sticky top-0 z-10 bg-paper border-b border-hair">
+    <div class="max-w-2xl mx-auto px-6 py-4 flex items-baseline justify-between">
+      <a href="../index.html" class="text-sm text-brand hover:underline underline-offset-4">← All briefings</a>
+      <a href="../index.html" class="text-lg font-semibold tracking-tight text-ink">The AI Brief</a>
+    </div>
+  </header>
+
   <main class="max-w-2xl mx-auto px-6">
 
     <header class="pt-12 pb-8 border-b border-hair">
-      <a href="../index.html" class="text-sm text-brand hover:underline underline-offset-4">← All briefings</a>
-      <p class="mt-6 font-mono text-xs text-muted">{{DATE_LONG}}</p>
-      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-ink">{{POST_TITLE}}</h1>
-      <p class="mt-4 text-body leading-relaxed">{{LEAD_PARAGRAPH}}</p>
+      <p class="font-mono text-[11px] tracking-[0.25em] text-muted uppercase">{{DATE_LONG}}</p>
+      <h1 class="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight text-ink leading-tight">{{POST_TITLE}}</h1>
+      <p class="mt-4 text-lg text-body leading-relaxed">{{LEAD_PARAGRAPH}}</p>
+      <nav class="mt-6 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[11px] uppercase tracking-[0.15em]">
+        <span class="text-muted">In this briefing —</span>
+        <a href="#top-stories" class="text-brand hover:underline underline-offset-4">Top stories</a>
+        <a href="#tools-releases" class="text-brand hover:underline underline-offset-4">Tools &amp; releases</a>
+        <a href="#money-deals" class="text-brand hover:underline underline-offset-4">Money &amp; deals</a>
+        <a href="#markets" class="text-brand hover:underline underline-offset-4">Markets</a>
+        <a href="#quick-hits" class="text-brand hover:underline underline-offset-4">Quick hits</a>
+      </nav>
     </header>
 
-    <!-- Repeat per section: -->
-    <section class="pt-10">
-      <h2 class="text-lg font-semibold text-ink border-b border-hair pb-2">{{SECTION_TITLE}}</h2>
+    <!-- Repeat per section, numbering 01–05 in order. ids must match the nav above. -->
+    <section id="top-stories" class="pt-10">
+      <p class="font-mono text-[11px] tracking-[0.25em] text-brand">01</p>
+      <h2 class="mt-1 text-xl font-semibold text-ink border-b border-hair pb-2">{{SECTION_TITLE}}</h2>
 
       <!-- Repeat per story: -->
-      <article class="mt-6">
+      <article class="mt-7">
         <h3 class="text-base font-semibold text-ink">{{STORY_TITLE}}</h3>
-        <p class="mt-1.5 text-sm text-body leading-relaxed">
+        <p class="mt-1.5 text-[15px] text-body leading-7">
           {{STORY_SUMMARY_1_3_SENTENCES}}
-          <a href="{{SOURCE_URL}}" class="text-brand hover:underline underline-offset-4">Source Name ↗</a>
+          <a href="{{SOURCE_URL}}" class="text-brand hover:underline underline-offset-2">Source Name ↗</a>
         </p>
       </article>
     </section>
 
-    <!-- Markets section: -->
-    <section class="pt-10">
-      <h2 class="text-lg font-semibold text-ink border-b border-hair pb-2">Markets</h2>
-      <table class="mt-4 w-full text-sm">
-        <thead>
-          <tr class="text-left text-xs uppercase tracking-wider text-ink0">
-            <th class="py-2 font-medium">Ticker</th>
-            <th class="py-2 font-medium text-right">Price</th>
-            <th class="py-2 font-medium text-right">Change</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-t border-hair">
-            <td class="py-2 font-mono text-body">TICKER</td>
-            <td class="py-2 text-right text-body">000.00</td>
-            <td class="py-2 text-right font-mono text-loss">-0.00%</td>
-            <!-- gains: class "text-gain", losses: "text-loss" -->
-          </tr>
-        </tbody>
-      </table>
-      <p class="mt-4 text-sm text-body leading-relaxed">{{MARKET_COMMENTARY_WITH_SOURCES}}</p>
+    <section id="markets" class="pt-12">
+      <p class="font-mono text-[11px] tracking-[0.25em] text-brand">04</p>
+      <h2 class="mt-1 text-xl font-semibold text-ink border-b border-hair pb-2">Markets</h2>
+
+      <!-- Wrap the table exactly like this so it scrolls on narrow screens. -->
+      <div class="overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0 mt-5">
+        <table class="w-full text-sm min-w-[24rem]">
+          <thead>
+            <tr class="text-left text-[11px] uppercase tracking-[0.15em] text-muted">
+              <th class="py-2 font-medium">Ticker</th>
+              <th class="py-2 font-medium text-right">Price</th>
+              <th class="py-2 font-medium text-right">Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-hair">
+              <td class="py-2.5 font-mono text-body">TICKER</td>
+              <td class="py-2.5 text-right text-body">000.00</td>
+              <td class="py-2.5 text-right font-mono text-loss">-0.00%</td>
+              <!-- gains: class "text-gain", losses: "text-loss" -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-5 text-[15px] text-body leading-7">{{MARKET_COMMENTARY_WITH_SOURCES}}</p>
     </section>
 
-    <!-- Quick hits: -->
-    <section class="pt-10">
-      <h2 class="text-lg font-semibold text-ink border-b border-hair pb-2">Quick hits</h2>
-      <ul class="mt-4 space-y-2.5 text-sm text-body leading-relaxed list-disc list-inside marker:text-muted">
-        <li>{{ONE_LINER}} <a href="{{SOURCE_URL}}" class="text-brand hover:underline underline-offset-4">↗</a></li>
+    <section id="quick-hits" class="pt-12">
+      <p class="font-mono text-[11px] tracking-[0.25em] text-brand">05</p>
+      <h2 class="mt-1 text-xl font-semibold text-ink border-b border-hair pb-2">Quick hits</h2>
+      <ul class="mt-5 space-y-3 text-[15px] text-body leading-7 list-disc list-outside pl-5 marker:text-muted">
+        <li>{{ONE_LINER}} <a href="{{SOURCE_URL}}" class="text-brand hover:underline underline-offset-2">↗</a></li>
       </ul>
     </section>
 
-    <footer class="py-10 text-xs text-ink0 leading-relaxed border-t border-hair mt-10">
-      <p>Compiled by a pi agent from Exa search, RSS feeds, and Yahoo Finance quotes (last close). Every item links its source.</p>
+    <footer class="py-10 text-xs text-muted leading-relaxed border-t border-hair mt-12">
+      <p>Compiled by a pi agent from Exa search, RSS feeds, and Yahoo Finance quotes (last close, <date>). Every item links its source.</p>
       <a href="../index.html" class="mt-2 inline-block text-brand hover:underline underline-offset-4">← All briefings</a>
     </footer>
   </main>

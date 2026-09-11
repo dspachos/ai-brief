@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Archive — The AI Brief</title>
   <meta name="description" content="All daily AI briefings.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231B365D'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='17' fill='%23f5f4ed' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -29,39 +30,59 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    ::selection { background: #1B365D; color: #f5f4ed; }
+  </style>
 </head>
 <body class="bg-paper text-body font-serif antialiased min-h-screen">
+
+  <header class="sticky top-0 z-10 bg-paper border-b border-hair">
+    <div class="max-w-2xl mx-auto px-6 py-4 flex items-baseline justify-between">
+      <a href="index.html" class="text-lg font-semibold tracking-tight text-ink">The AI Brief</a>
+      <nav class="font-mono text-[11px] uppercase tracking-[0.2em]">
+        <a href="index.html" class="text-muted hover:text-brand">Latest</a>
+      </nav>
+    </div>
+  </header>
+
   <main class="max-w-2xl mx-auto px-6">
 
-    <header class="pt-16 pb-10 border-b border-hair">
-      <a href="index.html" class="text-sm text-brand hover:underline underline-offset-4">← Latest briefing</a>
-      <h1 class="mt-6 text-3xl font-semibold tracking-tight text-ink">Archive</h1>
-      <p class="mt-2 text-muted">Every daily briefing, newest first.</p>
-    </header>
+    <section class="pt-12 pb-8">
+      <p class="font-mono text-[11px] tracking-[0.25em] text-brand uppercase">Every edition</p>
+      <h1 class="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight text-ink">Archive</h1>
+      <p class="mt-3 text-muted">All daily briefings, newest first.</p>
+    </section>
 
     <section x-data="brief()">
       <div x-show="!loaded && !error" class="py-10 space-y-4">
-        <div class="h-4 w-24 bg-hair rounded animate-pulse"></div>
-        <div class="h-6 w-3/4 bg-hair rounded animate-pulse"></div>
-        <div class="h-3 w-full bg-hair/60 rounded animate-pulse"></div>
+        <div class="h-4 w-24 bg-hair animate-pulse"></div>
+        <div class="h-6 w-3/4 bg-hair animate-pulse"></div>
+        <div class="h-3 w-full bg-hair/60 animate-pulse"></div>
       </div>
 
       <p x-show="error" class="py-10 text-muted text-sm">Couldn't load <code class="font-mono">posts.json</code>.</p>
 
-      <template x-for="post in paged" :key="post.date">
-        <article class="py-8 border-b border-hair">
-          <a :href="post.file" class="group block">
-            <time class="font-mono text-xs text-brand" x-text="fmt(post.date)"></time>
-            <h2 class="mt-2 text-xl font-semibold text-ink group-hover:text-brand transition-colors" x-text="post.title"></h2>
-            <p class="mt-2 text-sm text-body leading-relaxed" x-text="post.summary"></p>
-            <span class="mt-3 inline-block text-sm text-brand underline underline-offset-4 decoration-hair group-hover:decoration-brand">Read briefing →</span>
-          </a>
-        </article>
+      <template x-for="g in months" :key="g.month">
+        <div>
+          <h2 class="font-mono text-[11px] tracking-[0.25em] text-muted uppercase pt-8 pb-2 border-b border-hair" x-text="g.label"></h2>
+          <template x-for="post in g.posts" :key="post.date">
+            <article class="py-6 border-b border-hair sm:flex sm:gap-8">
+              <a :href="post.file" class="group sm:w-28 shrink-0">
+                <time class="font-mono text-xs text-brand block" x-text="short(post.date)"></time>
+              </a>
+              <a :href="post.file" class="group mt-1 sm:mt-0 flex-1">
+                <h3 class="text-lg font-semibold text-ink leading-snug group-hover:text-brand transition-colors" x-text="post.title"></h3>
+                <p class="mt-1.5 text-sm text-body leading-relaxed" x-text="post.summary"></p>
+              </a>
+            </article>
+          </template>
+        </div>
       </template>
 
       <p x-show="loaded && !error && posts.length === 0" class="py-10 text-muted text-sm">No briefings yet.</p>
 
-      <nav x-show="totalPages > 1" class="flex items-center justify-between py-6">
+      <nav x-show="totalPages > 1" class="flex items-center justify-between py-8">
         <button x-show="page > 1" @click="page--" class="text-sm text-brand hover:underline underline-offset-4">← Newer</button>
         <span x-show="page === 1" class="text-sm text-muted/50">← Newer</span>
         <p class="font-mono text-xs text-muted" x-text="`Page ${page} of ${totalPages}`"></p>
@@ -71,7 +92,7 @@
     </section>
 
     <footer class="py-10 text-xs text-muted leading-relaxed">
-      Assembled daily by a <a href="https://github.com/earendil-works/pi-coding-agent" class="text-brand hover:underline underline-offset-2">pi</a> agent from Exa search, RSS feeds, and market data. Every item links its source.
+      © 2026 The AI Brief · Assembled daily by a <a href="https://github.com/earendil-works/pi-coding-agent" class="text-brand hover:underline underline-offset-2">pi</a> agent.
     </footer>
   </main>
 
@@ -85,10 +106,28 @@
         per: 12,
         get totalPages() { return Math.ceil(this.posts.length / this.per); },
         get paged() { return this.posts.slice((this.page - 1) * this.per, this.page * this.per); },
+        get months() {
+          const groups = [];
+          for (const p of this.paged) {
+            const month = p.date.slice(0, 7);
+            let g = groups.find(x => x.month === month);
+            if (!g) {
+              g = { month, label: new Date(month + '-01').toLocaleDateString('en-US', { month: 'long', year: 'numeric' }), posts: [] };
+              groups.push(g);
+            }
+            g.posts.push(p);
+          }
+          return groups;
+        },
         fmt(d) {
           return new Date(d + 'T00:00:00').toLocaleDateString('en-US', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
           });
+        },
+        short(d) {
+          return new Date(d + 'T00:00:00').toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric'
+          }).toUpperCase();
         },
         async init() {
           try {

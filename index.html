@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The AI Brief — Daily AI News</title>
   <meta name="description" content="A daily briefing on AI: news, tools, research, deals, and markets.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231B365D'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='17' fill='%23f5f4ed' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -29,46 +30,67 @@
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    ::selection { background: #1B365D; color: #f5f4ed; }
+  </style>
 </head>
 <body class="bg-paper text-body font-serif antialiased min-h-screen">
+
+  <header class="border-b border-hair">
+    <div class="max-w-2xl mx-auto px-6 py-4 flex items-baseline justify-between">
+      <a href="index.html" class="text-lg font-semibold tracking-tight text-ink">The AI Brief</a>
+      <nav class="font-mono text-[11px] uppercase tracking-[0.2em]">
+        <a href="archive.html" class="text-muted hover:text-brand">Archive</a>
+      </nav>
+    </div>
+  </header>
+
   <main class="max-w-2xl mx-auto px-6">
 
-    <header class="pt-16 pb-10 border-b border-hair">
+    <section class="pt-14 pb-10">
       <p class="font-mono text-[11px] tracking-[0.25em] text-brand uppercase">Daily · AI News Briefing</p>
-      <h1 class="mt-3 text-4xl font-semibold tracking-tight text-ink">The AI Brief</h1>
-      <p class="mt-3 text-muted leading-relaxed">What moved in AI today — news, tools, deals, and markets, in one page.</p>
-    </header>
+      <h1 class="mt-3 text-4xl sm:text-5xl font-semibold tracking-tight text-ink leading-tight">What moved in AI today.</h1>
+      <p class="mt-4 text-lg text-muted leading-relaxed">News, tools, deals, and markets — one briefing, one page, every day.</p>
+    </section>
 
     <section x-data="brief()">
-      <div x-show="!loaded && !error" class="py-10 space-y-4">
-        <div class="h-4 w-24 bg-hair rounded animate-pulse"></div>
-        <div class="h-6 w-3/4 bg-hair rounded animate-pulse"></div>
-        <div class="h-3 w-full bg-hair/60 rounded animate-pulse"></div>
+      <div x-show="!loaded && !error" class="border border-hair p-8 space-y-4">
+        <div class="h-4 w-24 bg-hair animate-pulse"></div>
+        <div class="h-7 w-3/4 bg-hair animate-pulse"></div>
+        <div class="h-3 w-full bg-hair/60 animate-pulse"></div>
       </div>
 
       <p x-show="error" class="py-10 text-muted text-sm">Couldn't load <code class="font-mono">posts.json</code>.</p>
 
       <template x-if="loaded && !error && posts.length">
-        <article class="py-8 border-b border-hair">
+        <article class="border border-hair p-6 sm:p-8">
           <p class="font-mono text-[11px] tracking-[0.25em] text-muted uppercase">Latest briefing</p>
-          <a :href="posts[0].file" class="group mt-3 block">
+          <a :href="posts[0].file" class="group mt-4 block">
             <time class="font-mono text-xs text-brand" x-text="fmt(posts[0].date)"></time>
-            <h2 class="mt-2 text-2xl font-semibold text-ink group-hover:text-brand transition-colors" x-text="posts[0].title"></h2>
-            <p class="mt-3 text-sm text-body leading-relaxed" x-text="posts[0].summary"></p>
-            <span class="mt-4 inline-block text-sm text-brand underline underline-offset-4 decoration-hair group-hover:decoration-brand">Read briefing →</span>
+            <h2 class="mt-2 text-2xl font-semibold text-ink leading-snug group-hover:text-brand transition-colors" x-text="posts[0].title"></h2>
+            <p class="mt-3 text-[15px] text-body leading-relaxed" x-text="posts[0].summary"></p>
           </a>
+          <a :href="posts[0].file" class="mt-6 inline-block border border-brand text-brand px-4 py-2 text-sm hover:bg-brand hover:text-paper transition-colors">Read the full briefing →</a>
         </article>
       </template>
 
       <p x-show="loaded && !error && posts.length === 0" class="py-10 text-muted text-sm">No briefings yet.</p>
+    </section>
 
-      <nav class="py-6">
-        <a href="archive.html" class="text-sm text-muted hover:text-brand">Browse all briefings →</a>
-      </nav>
+    <section class="mt-14 border-t border-hair pt-10 pb-4 grid sm:grid-cols-2 gap-10">
+      <div>
+        <h2 class="font-mono text-[11px] tracking-[0.25em] text-muted uppercase">About</h2>
+        <p class="mt-3 text-sm leading-relaxed">The AI Brief is a daily digest of what actually mattered in artificial intelligence — the launches, the money, the research, and the market reaction. No hot takes, no filler: every item links its source.</p>
+      </div>
+      <div>
+        <h2 class="font-mono text-[11px] tracking-[0.25em] text-muted uppercase">How it's made</h2>
+        <p class="mt-3 text-sm leading-relaxed">Assembled every day by a <a href="https://github.com/earendil-works/pi-coding-agent" class="text-brand hover:underline underline-offset-2">pi</a> agent from Exa search, a curated RSS list, and market data — then published as plain static HTML.</p>
+      </div>
     </section>
 
     <footer class="py-10 text-xs text-muted leading-relaxed">
-      Assembled daily by a <a href="https://github.com/earendil-works/pi-coding-agent" class="text-brand hover:underline underline-offset-2">pi</a> agent from Exa search, RSS feeds, and market data. Every item links its source.
+      © 2026 The AI Brief · All briefings in the <a href="archive.html" class="text-brand hover:underline underline-offset-2">archive</a>.
     </footer>
   </main>
 
