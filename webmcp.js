@@ -13,9 +13,19 @@
   const tools = [
     {
       name: 'get-latest-briefing',
-      description: 'Get the latest AI Brief daily briefing: date, title, summary, and link.',
+      description: 'Get the latest AI Brief daily briefing with full content: date, title, summary, and every section with its items and links.',
       inputSchema: { type: 'object', properties: {}, additionalProperties: false },
-      execute: async () => reply((await j('posts.json'))[0])
+      execute: async () => {
+        const [posts, items] = await Promise.all([j('posts.json'), j('search.json')]);
+        const latest = posts[0];
+        const sections = [];
+        for (const it of items.filter(i => i.date === latest.date)) {
+          let s = sections.find(x => x.section === it.section);
+          if (!s) sections.push(s = { section: it.section, items: [] });
+          s.items.push({ title: it.title, text: it.text, url: it.url });
+        }
+        return reply({ date: latest.date, title: latest.title, summary: latest.summary, url: latest.file, sections });
+      }
     },
     {
       name: 'search-briefing-items',
