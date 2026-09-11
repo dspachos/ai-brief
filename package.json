@@ -1,6 +1,6 @@
 {
   "name": "ai-brief-mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP server exposing The AI Brief (https://dspachos.github.io/ai-brief/) daily AI briefing as tools",
   "type": "module",
   "bin": {
