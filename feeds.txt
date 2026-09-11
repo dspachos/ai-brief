@@ -1,0 +1,12 @@
+# RSS sources for the daily briefing. One feed per line: Name — URL
+# Lines starting with # are ignored. Tolerate failures: a dead feed never blocks the briefing.
+
+TechCrunch AI — https://techcrunch.com/category/artificial-intelligence/feed/
+The Verge AI — https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+# Sometimes rate-limits (429) — retry next day rather than removing.
+VentureBeat AI — https://venturebeat.com/category/ai/feed/
+Ars Technica AI — https://arstechnica.com/ai/feed/
+MIT Technology Review — https://www.technologyreview.com/feed/
+Import AI (Jack Clark) — https://importai.substack.com/feed
+Simon Willison's Weblog — https://simonwillison.net/atom/everything/
+MarkTechPost — https://www.marktechpost.com/feed/
