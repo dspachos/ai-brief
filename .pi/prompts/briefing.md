@@ -46,6 +46,7 @@ Prioritize: major model/product launches > big money moves > safety/policy > res
 - Copy `template.html` structure into `posts/YYYY-MM-DD.html` (same head, fonts, section markup, relative links to `../index.html`).
 - Post title: `AI Briefing — <Month D, YYYY>`.
 - Gains use `text-gain`, losses use `text-loss` in the markets table.
+- Emphasize the crux with `<strong>` — key numbers, names, and decisive phrases. At most ~3 per paragraph, never a whole sentence, and never inside the markets table.
 - Footer notes the quote timestamp ("last close <date>") and sources (Exa, RSS, Yahoo Finance).
 
 ## 5. Index

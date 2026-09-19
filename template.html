@@ -32,6 +32,7 @@
   <style>
     html { scroll-behavior: smooth; font-size: 106.25%; }
     ::selection { background: #1B365D; color: #f5f4ed; }
+    strong { font-weight: 600; color: #33322c; }
   </style>
 </head>
 <body class="bg-paper text-body font-serif antialiased min-h-screen">
@@ -63,7 +64,7 @@
     <section id="top-stories" class="pt-10">
       <h2 class="font-mono text-xs font-bold tracking-[0.25em] text-brand uppercase border-b border-hair pb-2">{{SECTION_TITLE}}</h2>
 
-      <!-- Repeat per story: -->
+      <!-- Repeat per story: <strong> for key phrases (max ~3 per paragraph) -->
       <article class="mt-7">
         <h3 class="text-lg font-semibold text-ink">{{STORY_TITLE}}</h3>
         <p class="mt-1.5 text-base text-body leading-7">{{STORY_SUMMARY_1_3_SENTENCES}}</p>
